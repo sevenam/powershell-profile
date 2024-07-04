@@ -1,5 +1,6 @@
 Set-Alias touch New-Item
 Set-Alias grep sls
+Set-Alias newguid New-Guid
 
 function goto {
     param($directory)
@@ -12,4 +13,8 @@ function goto {
     } else {
         Set-Location $directory
     }
+}
+
+function New-Guid {
+    [guid]::NewGuid().ToString()
 }
