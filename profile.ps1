@@ -13,7 +13,7 @@ function goto {
         Set-Location "C:\Users\$env:USERNAME\Jottacloud\notes"
     } else {
         Set-Location $directory
-    }
+    }k
 }
 
 function New-Guid {
@@ -37,7 +37,7 @@ function Set-UiScaling {
 
     $registryMonitorPath = "HKCU:\Control Panel\Desktop\PerMonitorSettings\DELA0F45KC0303L0E5L_0C_07E4_FF^0D32DB76FF51CE434420A8249440545F"
     Set-ItemProperty -Path $registryMonitorPath -Name "DpiValue" -Value $scaling -Type DWord
-    Write-Output "Scaling for monitor at registry path '$registryMonitorPath' set to $scaling ($percentage%)."
+    Write-Output "Scaling for monitor DELL-U3818DW set to $scaling ($percentage%)."
 
     Add-Type @"
     using System;
