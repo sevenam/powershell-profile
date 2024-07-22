@@ -35,9 +35,9 @@ function Set-UiScaling {
     # $subKeys = Get-ChildItem -Path $baseRegistryPath
     # Write-Host $subKeys
 
-    $registryMonitorPath = "HKCU:\Control Panel\Desktop\PerMonitorSettings\DELA0F45KC0303L0E5L_0C_07E4_FF^0D32DB76FF51CE434420A8249440545F"
+    $registryMonitorPath = "HKCU:\Control Panel\Desktop\PerMonitorSettings\GSM774E403NTGYEP279_03_07E8_4A^42EA6365E0D36F1D9DD7B742F0AF9200"
     Set-ItemProperty -Path $registryMonitorPath -Name "DpiValue" -Value $scaling -Type DWord
-    Write-Output "Scaling for monitor DELL-U3818DW set to $scaling ($percentage%)."
+    Write-Output "Scaling for monitor LG-38WN95CP-W set to $scaling ($percentage%)."
 
     Add-Type @"
     using System;
