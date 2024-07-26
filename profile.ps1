@@ -13,7 +13,7 @@ function goto {
         Set-Location "C:\Users\$env:USERNAME\Jottacloud\notes"
     } else {
         Set-Location $directory
-    }k
+    }
 }
 
 function New-Guid {
