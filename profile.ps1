@@ -6,8 +6,8 @@ Set-Alias killps KillProcess
 
 function watch {
     param (
-        [int]$Interval = 2,
-        [string[]]$Command
+        [string[]]$Command,
+        [int]$Interval = 2
     )
 
     while ($true) {
