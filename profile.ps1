@@ -30,7 +30,7 @@ function goto {
 }
 
 function KillProcess {
-    param($processName)c
+    param($processName)
     Stop-Process -Name $processName -Force
 }
 
