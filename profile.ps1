@@ -6,12 +6,13 @@ Set-Alias killps KillProcess
 
 function watch {
     param (
-        [string]$Command,
-        [int]$Interval = 5
+        [int]$Interval = 2,
+        [string[]]$Command
     )
 
     while ($true) {
-        Invoke-Expression $Command
+        Write-Host "Current Time: $(Get-Date)"
+        & @Command
         Start-Sleep -Seconds $Interval
     }
 }
