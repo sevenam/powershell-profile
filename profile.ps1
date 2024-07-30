@@ -4,6 +4,18 @@ Set-Alias newguid New-Guid
 Set-Alias scaleui Set-UiScaling
 Set-Alias killps KillProcess
 
+function watch {
+    param (
+        [string]$Command,
+        [int]$Interval = 5
+    )
+
+    while ($true) {
+        Invoke-Expression $Command
+        Start-Sleep -Seconds $Interval
+    }
+}
+
 function goto {
     param($directory)
     if ($directory -eq "jotta") {
@@ -18,7 +30,7 @@ function goto {
 }
 
 function KillProcess {
-    param($processName)
+    param($processName)c
     Stop-Process -Name $processName -Force
 }
 
