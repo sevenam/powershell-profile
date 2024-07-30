@@ -2,6 +2,7 @@ Set-Alias touch New-Item
 Set-Alias grep sls
 Set-Alias newguid New-Guid
 Set-Alias scaleui Set-UiScaling
+Set-Alias killps KillProcess
 
 function goto {
     param($directory)
@@ -14,6 +15,11 @@ function goto {
     } else {
         Set-Location $directory
     }
+}
+
+function KillProcess {
+    param($processName)
+    Stop-Process -Name $processName -Force
 }
 
 function New-Guid {
