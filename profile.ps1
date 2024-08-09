@@ -4,6 +4,9 @@ Set-Alias newguid New-Guid
 Set-Alias scaleui Set-UiScaling
 Set-Alias killps KillProcess
 
+# winget install JanDeDobbeleer.OhMyPosh
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\thecyberden.omp.json" | Invoke-Expression
+
 function watch {
     param (
         [string]$Command,
