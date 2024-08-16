@@ -3,9 +3,14 @@ Set-Alias grep sls
 Set-Alias newguid New-Guid
 Set-Alias scaleui Set-UiScaling
 Set-Alias killps KillProcess
+Set-Alias dotnetversion dotnetversions
+Set-Alias dotnetsdks dotnetversions
 
-# winget install JanDeDobbeleer.OhMyPosh
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
+
+function dotnetversions {
+    dotnet --list-sdks
+}
 
 function watch {
     param (
