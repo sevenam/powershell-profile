@@ -5,8 +5,22 @@ Set-Alias scaleui Set-UiScaling
 Set-Alias killps KillProcess
 Set-Alias dotnetversion dotnetversions
 Set-Alias dotnetsdks dotnetversions
+Set-Alias nc Test-Port
 
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
+
+function Test-Port {
+    param (
+        [string]$IP,
+        [int]$Port
+    )
+
+    $ErrorActionPreference = "SilentlyContinue"
+    $tcpClient = New-Object Net.Sockets.TcpClient
+    $tcpClient.Connect($IP, $Port)
+    Write-Host "Connected:" $tcpClient.Connected
+    $tcpClient.Close()
+}
 
 function dotnetversions {
     dotnet --list-sdks
