@@ -18,7 +18,7 @@ function Test-Port {
     $ErrorActionPreference = "SilentlyContinue"
     $tcpClient = New-Object Net.Sockets.TcpClient
     $tcpClient.Connect($IP, $Port)
-    Write-Host "Connected:" $tcpClient.Connected
+    Write-Host "Connected to $IP on port $Port :" $tcpClient.Connected
     $tcpClient.Close()
 }
 
