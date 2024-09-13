@@ -51,6 +51,10 @@ function goto {
         Set-Location "C:\git"
     } elseif ($directory -eq "notes") {
         Set-Location "C:\Users\$env:USERNAME\Jottacloud\notes"
+    } elseif ($directory -eq "ptp") {
+        Set-Location "C:\git\PythonTool\PythonTool"
+    } elseif ($directory -eq "pwr") {
+        Set-Location "C:\git\Scripting\RemoteScripting"
     } else {
         Set-Location $directory
     }
