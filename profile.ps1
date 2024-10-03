@@ -6,9 +6,17 @@ Set-Alias killps KillProcess
 Set-Alias dotnetversion dotnetversions
 Set-Alias dotnetsdks dotnetversions
 Set-Alias nc Test-Port
+Set-Alias testport Test-Port
 Set-Alias codei "C:\Users\$env:USERNAME\AppData\Local\Programs\Microsoft VS Code Insiders\Code - Insiders.exe"
+Set-Alias echopath Print-Path
+Set-Alias echo-path Print-Path
+Set-Alias path Print-Path
 
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
+
+function Print-Path {
+    $env:path
+}
 
 function Test-Port {
     param (
