@@ -11,8 +11,19 @@ Set-Alias codei "C:\Users\$env:USERNAME\AppData\Local\Programs\Microsoft VS Code
 Set-Alias echopath Print-Path
 Set-Alias echo-path Print-Path
 Set-Alias path Print-Path
+Set-Alias printpath Print-Path
+Set-Alias listpath Print-Path
+Set-Alias listenvs Print-Envs
+Set-Alias printenvs Print-Envs
+Set-Alias envs Print-Envs
+Set-Alias echoenvs Print-Envs
+Set-Alias echo-envs Print-Envs
 
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
+
+function Print-Envs {
+    dir env:
+}
 
 function Print-Path {
     $env:path
