@@ -19,7 +19,23 @@ Set-Alias envs Print-Envs
 Set-Alias echoenvs Print-Envs
 Set-Alias echo-envs Print-Envs
 
+Set-Alias petrel2024 "C:\BuildAgentSoftware\Petrel 2024.1 x64\Petrel.exe"
+Set-Alias petrel2023 "C:\BuildAgentSoftware\Petrel 2024.1 x64\Petrel.exe"
+Set-Alias petrel2022 "C:\BuildAgentSoftware\Petrel 2024.1 x64\Petrel.exe"
+
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
+
+function fzfp {
+    fzf --preview "powershell -c Get-Content -Path {}"
+}
+
+function fzfv {
+    fzf --preview "powershell -c Get-Content -Path {}" --bind "enter:execute(nvim {})"
+}
+
+function fzfc {
+    fzf --preview "powershell -c Get-Content -Path {}" --bind "enter:execute(code {})"
+}
 
 function Print-Envs {
     dir env:
