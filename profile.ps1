@@ -1,5 +1,6 @@
 Set-Alias touch New-Item
 Set-Alias grep sls
+
 Set-Alias newguid New-Guid
 Set-Alias scaleui Set-UiScaling
 Set-Alias killps KillProcess
@@ -18,6 +19,7 @@ Set-Alias printenvs Print-Envs
 Set-Alias envs Print-Envs
 Set-Alias echoenvs Print-Envs
 Set-Alias echo-envs Print-Envs
+Set-Alias fzfrg fzfgrep
 
 Set-Alias petrel2024 "C:\BuildAgentSoftware\Petrel 2024.1 x64\Petrel.exe"
 Set-Alias petrel2023 "C:\BuildAgentSoftware\Petrel 2024.1 x64\Petrel.exe"
