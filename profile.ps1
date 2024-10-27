@@ -25,6 +25,19 @@ Set-Alias petrel2022 "C:\BuildAgentSoftware\Petrel 2024.1 x64\Petrel.exe"
 
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
 
+function fzfgrep {
+    param (
+        [string]$query
+    )
+
+    $rg_prefix = "rg --files-with-matches"
+    $file = fzf --sort --preview "rg --pretty --context 5 {q} {}" --phony -q $query --bind "change:reload:$rg_prefix {q}" --preview-window="70%:wrap"
+
+    if ($file) {
+        Start-Process $file
+    }
+}
+
 function fzfp {
     fzf --preview "powershell -c Get-Content -Path {}"
 }
