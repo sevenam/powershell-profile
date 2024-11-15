@@ -86,6 +86,7 @@ function watch {
     while ($true) {
         $output = Invoke-Expression $Command
         if ($output) {
+            Clear-Host
             Write-Output "Current Date and Time: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
             Write-Output $output
         }
