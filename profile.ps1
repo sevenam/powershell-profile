@@ -84,6 +84,8 @@ function watch {
     )
 
     while ($true) {
+        $iteration++
+        $dots = "." * $iteration
         $output = Invoke-Expression $Command
         if ($output) {
             Clear-Host
@@ -92,6 +94,7 @@ function watch {
         } else {
             Clear-Host
             Write-Host "Current Date and Time: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')" -ForegroundColor DarkCyan
+            Write-Output "No output from command$dots"
         }
         Start-Sleep -Seconds $Interval
     }
