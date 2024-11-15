@@ -91,7 +91,7 @@ function watch {
             Write-Output $output
         } else {
             Clear-Host
-            Write-Output "Current Date and Time: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+            Write-Host "Current Date and Time: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')" -ForegroundColor DarkCyan
         }
         Start-Sleep -Seconds $Interval
     }
