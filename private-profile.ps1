@@ -5,8 +5,9 @@ Set-Alias newguid New-Guid
 Set-Alias killps KillProcess
 Set-Alias dotnetversion dotnetversions
 Set-Alias dotnetsdks dotnetversions
-Set-Alias nc Test-Port
-Set-Alias testport Test-Port
+# Test connection example: test-connection google.com -TcpPort 80
+Set-Alias nc Test-Connection
+Set-Alias test-port Test-Connection
 Set-Alias codei "C:\Users\$env:USERNAME\AppData\Local\Programs\Microsoft VS Code Insiders\Code - Insiders.exe"
 Set-Alias echopath Print-Path
 Set-Alias echo-path Print-Path
@@ -53,19 +54,6 @@ function Print-Envs {
 
 function Print-Path {
     $env:path
-}
-
-function Test-Port {
-    param (
-        [string]$IP,
-        [int]$Port
-    )
-
-    $ErrorActionPreference = "SilentlyContinue"
-    $tcpClient = New-Object Net.Sockets.TcpClient
-    $tcpClient.Connect($IP, $Port)
-    Write-Host "Connected to $IP on port $Port :" $tcpClient.Connected
-    $tcpClient.Close()
 }
 
 function dotnetversions {
