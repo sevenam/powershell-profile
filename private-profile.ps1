@@ -3,6 +3,7 @@ Set-Alias grep sls
 
 Set-Alias newguid New-Guid
 Set-Alias killps KillProcess
+Set-Alias kill KillProcess
 Set-Alias dotnetversion dotnetversions
 Set-Alias dotnetsdks dotnetversions
 # Test connection example: test-connection google.com -TcpPort 80
