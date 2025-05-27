@@ -63,10 +63,25 @@ function dotnetversions {
 
 function watch {
     param (
-        [string]$Command,
-        [int]$Interval = 2
+        [Parameter(ValueFromRemainingArguments = $true)]
+        [string[]]$Args
     )
 
+    if ($Args.Count -eq 0) {
+        Write-Host "Usage: watch <command> [args ...] <interval>"
+        return
+    }
+
+    $lastArg = $Args[-1]
+    if ($lastArg -as [int]) {
+        $Interval = [int]$lastArg
+        $Command = $Args[0..($Args.Count - 2)] -join ' '
+    } else {
+        $Interval = 2
+        $Command = $Args -join ' '
+    }
+
+    $iteration = 0
     while ($true) {
         $iteration++
         $dots = "." * $iteration
