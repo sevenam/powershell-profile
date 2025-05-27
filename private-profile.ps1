@@ -1,4 +1,4 @@
-Set-Alias touch New-Item
+Set-Alias touch ni
 Set-Alias grep sls
 
 Set-Alias newguid New-Guid
