@@ -1,6 +1,7 @@
 Set-Alias touch ni
 Set-Alias grep sls
 
+Set-Alias cat bat
 Set-Alias newguid New-Guid
 Set-Alias killps KillProcess
 Set-Alias kill KillProcess
