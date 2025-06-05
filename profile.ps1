@@ -1,6 +1,7 @@
 Set-Alias touch New-Item
 Set-Alias grep sls
 
+Set-Alias cat bat
 Set-Alias newguid New-Guid
 Set-Alias scaleui Set-UiScaling
 Set-Alias killps KillProcess
