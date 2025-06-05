@@ -4,11 +4,13 @@ Set-Alias grep sls
 Set-Alias cat bat
 Set-Alias newguid New-Guid
 Set-Alias scaleui Set-UiScaling
+Set-Alias kill KillProcess
 Set-Alias killps KillProcess
 Set-Alias dotnetversion dotnetversions
 Set-Alias dotnetsdks dotnetversions
-Set-Alias nc Test-Port
-Set-Alias testport Test-Port
+# Test connection example: test-connection google.com -TcpPort 80
+Set-Alias nc Test-Connection
+Set-Alias test-port Test-Connection
 Set-Alias codei "C:\Users\$env:USERNAME\AppData\Local\Programs\Microsoft VS Code Insiders\Code - Insiders.exe"
 Set-Alias echopath Print-Path
 Set-Alias echo-path Print-Path
@@ -61,29 +63,31 @@ function Print-Path {
     $env:path
 }
 
-function Test-Port {
-    param (
-        [string]$IP,
-        [int]$Port
-    )
-
-    $ErrorActionPreference = "SilentlyContinue"
-    $tcpClient = New-Object Net.Sockets.TcpClient
-    $tcpClient.Connect($IP, $Port)
-    Write-Host "Connected to $IP on port $Port :" $tcpClient.Connected
-    $tcpClient.Close()
-}
-
 function dotnetversions {
     dotnet --list-sdks
 }
 
 function watch {
     param (
-        [string]$Command,
-        [int]$Interval = 2
+        [Parameter(ValueFromRemainingArguments = $true)]
+        [string[]]$Args
     )
 
+    if ($Args.Count -eq 0) {
+        Write-Host "Usage: watch <command> [args ...] <interval>"
+        return
+    }
+
+    $lastArg = $Args[-1]
+    if ($lastArg -as [int]) {
+        $Interval = [int]$lastArg
+        $Command = $Args[0..($Args.Count - 2)] -join ' '
+    } else {
+        $Interval = 2
+        $Command = $Args -join ' '
+    }
+
+    $iteration = 0
     while ($true) {
         $iteration++
         $dots = "." * $iteration
