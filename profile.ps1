@@ -1,6 +1,6 @@
 Set-Alias touch New-Item
 Set-Alias grep sls
-
+Set-Alias § Invoke-History
 Set-Alias cat bat
 Set-Alias newguid New-Guid
 Set-Alias scaleui Set-UiScaling
@@ -29,6 +29,10 @@ Set-Alias petrel2023 "C:\BuildAgentSoftware\Petrel 2023.1 x64\Petrel.exe"
 Set-Alias petrel2022 "C:\BuildAgentSoftware\Petrel 2022.1 x64\Petrel.exe"
 
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
+
+function §§ {
+    Invoke-History (Get-History -Count 1)
+}
 
 function fzfgrep {
     param (
