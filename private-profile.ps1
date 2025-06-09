@@ -1,6 +1,6 @@
 Set-Alias touch ni
 Set-Alias grep sls
-
+Set-Alias § Invoke-History
 Set-Alias cat bat
 Set-Alias newguid New-Guid
 Set-Alias killps KillProcess
@@ -24,6 +24,10 @@ Set-Alias echo-envs Print-Envs
 Set-Alias fzfrg fzfgrep
 
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
+
+function §§ {
+    Invoke-History (Get-History -Count 1)
+}
 
 function fzfgrep {
     param (
