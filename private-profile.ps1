@@ -2,7 +2,6 @@ Set-Alias touch ni
 Set-Alias grep sls
 Set-Alias § Invoke-History
 Set-Alias hist Get-History
-Set-Alias cat bat
 Set-Alias newguid New-Guid
 Set-Alias killps KillProcess
 Set-Alias kill KillProcess
