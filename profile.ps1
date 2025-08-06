@@ -129,8 +129,6 @@ function goto {
 
 function KillProcess {
     param($processNameOrId)
-    
-    # Check if input is numeric (process ID)
     if ($processNameOrId -match '^\d+$') {
         Stop-Process -Id $processNameOrId -Force
     } else {
