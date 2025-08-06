@@ -128,8 +128,14 @@ function goto {
 }
 
 function KillProcess {
-    param($processName)
-    Stop-Process -Name $processName -Force
+    param($processNameOrId)
+    
+    # Check if input is numeric (process ID)
+    if ($processNameOrId -match '^\d+$') {
+        Stop-Process -Id $processNameOrId -Force
+    } else {
+        Stop-Process -Name $processNameOrId -Force
+    }
 }
 
 function New-Guid {
