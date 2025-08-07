@@ -22,8 +22,13 @@ Set-Alias envs Print-Envs
 Set-Alias echoenvs Print-Envs
 Set-Alias echo-envs Print-Envs
 Set-Alias fzfrg fzfgrep
+Set-Alias edit editprofile
 
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
+
+function editprofile {
+    code $PROFILE.CurrentUserAllHosts
+}
 
 function §§ {
     Invoke-History (Get-History -Count 1)
