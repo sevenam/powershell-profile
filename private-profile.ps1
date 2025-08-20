@@ -23,6 +23,7 @@ Set-Alias echoenvs Print-Envs
 Set-Alias echo-envs Print-Envs
 Set-Alias fzfrg fzfgrep
 Set-Alias edit editprofile
+Set-Alias lg lazygit
 
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
 
