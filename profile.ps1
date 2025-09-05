@@ -25,6 +25,7 @@ Set-Alias echo-envs Print-Envs
 Set-Alias fzfrg fzfgrep
 Set-Alias edit editprofile
 Set-Alias lg lazygit
+Set-Alias z zoxide
 
 Set-Alias petrel2024 "C:\BuildAgentSoftware\Petrel 2024.1 x64\Petrel.exe"
 Set-Alias petrel2023 "C:\BuildAgentSoftware\Petrel 2023.1 x64\Petrel.exe"
