@@ -26,12 +26,15 @@ Set-Alias fzfrg fzfgrep
 Set-Alias edit editprofile
 Set-Alias lg lazygit
 Set-Alias z zoxide
+Set-Alias scaleui Set-UiScaling
 
 Set-Alias petrel2024 "C:\BuildAgentSoftware\Petrel 2024.1 x64\Petrel.exe"
 Set-Alias petrel2023 "C:\BuildAgentSoftware\Petrel 2023.1 x64\Petrel.exe"
 Set-Alias petrel2022 "C:\BuildAgentSoftware\Petrel 2022.1 x64\Petrel.exe"
 
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
+# oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
+starship init powershell | Invoke-Expression
+zoxide init powershell | Out-String | Invoke-Expression
 
 function editprofile {
     code $PROFILE.CurrentUserAllHosts
