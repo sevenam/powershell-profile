@@ -26,6 +26,7 @@ Set-Alias edit editprofile
 Set-Alias lg lazygit
 
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
+zoxide init powershell | Out-String | Invoke-Expression
 
 function editprofile {
     code $PROFILE.CurrentUserAllHosts
