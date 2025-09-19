@@ -66,7 +66,7 @@ function Print-Envs {
 }
 
 function Print-Path {
-    $env:path
+    $env:Path -split ';'
 }
 
 function dotnetversions {
