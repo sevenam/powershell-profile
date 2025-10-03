@@ -1,11 +1,10 @@
-Set-Alias touch New-Item
+Set-Alias touch ni
 Set-Alias grep sls
 Set-Alias § Invoke-History
 Set-Alias hist Get-History
 Set-Alias newguid New-Guid
-Set-Alias scaleui Set-UiScaling
-Set-Alias kill KillProcess
 Set-Alias killps KillProcess
+Set-Alias kill KillProcess
 Set-Alias dotnetversion dotnetversions
 Set-Alias dotnetsdks dotnetversions
 # Test connection example: test-connection google.com -TcpPort 80
@@ -31,9 +30,8 @@ Set-Alias z zoxide
 Remove-Item Alias:cat -ErrorAction SilentlyContinue
 Remove-Item Alias:cd -ErrorAction SilentlyContinue
 
-Set-Alias petrel2024 "C:\BuildAgentSoftware\Petrel 2024.1 x64\Petrel.exe"
-Set-Alias petrel2023 "C:\BuildAgentSoftware\Petrel 2023.1 x64\Petrel.exe"
-Set-Alias petrel2022 "C:\BuildAgentSoftware\Petrel 2022.1 x64\Petrel.exe"
+# ensure user and machine path are combined correctly
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path","User") + ";" + [System.Environment]::GetEnvironmentVariable("Path","Machine")
 
 # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
 starship init powershell | Invoke-Expression
@@ -143,10 +141,6 @@ function goto {
         Set-Location "C:\git"
     } elseif ($directory -eq "notes") {
         Set-Location "C:\Users\$env:USERNAME\Jottacloud\notes"
-    } elseif ($directory -eq "ptp") {
-        Set-Location "C:\git\PythonTool\PythonTool"
-    } elseif ($directory -eq "pwr") {
-        Set-Location "C:\git\Scripting\RemoteScripting"
     } else {
         Set-Location $directory
     }
@@ -154,6 +148,8 @@ function goto {
 
 function KillProcess {
     param($processNameOrId)
+    
+    # Check if input is numeric (process ID)
     if ($processNameOrId -match '^\d+$') {
         Stop-Process -Id $processNameOrId -Force
     } else {
@@ -163,6 +159,18 @@ function KillProcess {
 
 function New-Guid {
     [guid]::NewGuid().ToString()
+}
+
+function petrel2022 {
+    Start-Process -FilePath "C:\BuildAgentSoftware\Petrel 2022.1 x64\Petrel.exe"
+}
+
+function petrel2023 {
+    Start-Process -FilePath "C:\BuildAgentSoftware\Petrel 2023.1 x64\Petrel.exe"
+}
+
+function petrel2024 {
+    Start-Process -FilePath "C:\BuildAgentSoftware\Petrel 2024.1 x64\Petrel.exe"
 }
 
 function Set-UiScaling {
