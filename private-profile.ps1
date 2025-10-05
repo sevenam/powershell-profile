@@ -1,3 +1,8 @@
+# Remove default aliases to avoid conflicts
+Remove-Item Alias:cat -ErrorAction SilentlyContinue
+Remove-Item Alias:cd -ErrorAction SilentlyContinue
+Remove-Item Alias:kill -ErrorAction SilentlyContinue
+
 Set-Alias touch ni
 Set-Alias grep sls
 Set-Alias § Invoke-History
@@ -24,9 +29,7 @@ Set-Alias echo-envs Print-Envs
 Set-Alias fzfrg fzfgrep
 Set-Alias edit editprofile
 Set-Alias lg lazygit
-# Remove default aliases to avoid conflicts
-Remove-Item Alias:cat -ErrorAction SilentlyContinue
-Remove-Item Alias:cd -ErrorAction SilentlyContinue
+
 
 # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
 starship init powershell | Invoke-Expression
