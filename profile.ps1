@@ -37,6 +37,12 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","User") + ";" + 
 starship init powershell | Invoke-Expression
 zoxide init powershell | Out-String | Invoke-Expression
 
+```powershell
+function ff($pattern) {
+    # Get-ChildItem -Recurse -Filter "*$pattern*"
+    gci -r -filter "*$pattern*"
+}
+
 function cat {
     bat -p @args
 }
