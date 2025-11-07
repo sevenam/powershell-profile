@@ -26,6 +26,9 @@ Set-Alias edit editprofile
 Set-Alias lg lazygit
 Set-Alias scaleui Set-UiScaling
 Set-Alias z zoxide
+Set-Alias gittree Git-Tree
+Set-Alias gitlog Git-Tree
+
 # Remove default aliases to avoid conflicts
 Remove-Item Alias:cat -ErrorAction SilentlyContinue
 Remove-Item Alias:cd -ErrorAction SilentlyContinue
@@ -98,6 +101,10 @@ function Print-Path {
 
 function dotnetversions {
     dotnet --list-sdks
+}
+
+function Git-Tree {
+    git log --graph --all --color=always --decorate --pretty=medium
 }
 
 function watch {
