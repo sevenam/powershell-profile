@@ -29,7 +29,8 @@ Set-Alias echo-envs Print-Envs
 Set-Alias fzfrg fzfgrep
 Set-Alias edit editprofile
 Set-Alias lg lazygit
-
+Set-Alias gittree Git-Tree
+Set-Alias gitlog Git-Tree
 
 # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
 starship init powershell | Invoke-Expression
@@ -96,6 +97,10 @@ function Print-Path {
 
 function dotnetversions {
     dotnet --list-sdks
+}
+
+function Git-Tree {
+    git log --graph --all --color=always --decorate --pretty=medium
 }
 
 function watch {
