@@ -25,6 +25,7 @@ Set-Alias fzfrg fzfgrep
 Set-Alias edit editprofile
 Set-Alias lg lazygit
 Set-Alias scaleui Set-UiScaling
+Set-Alias sui Set-UiScaling
 Set-Alias z zoxide
 Set-Alias gittree Git-Tree
 Set-Alias gitlog Git-Tree
