@@ -32,6 +32,9 @@ Set-Alias lg lazygit
 Set-Alias gittree Git-Tree
 Set-Alias gitlog Git-Tree
 
+# ensure user and machine path are combined correctly
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path","User") + ";" + [System.Environment]::GetEnvironmentVariable("Path","Machine")
+
 # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
 starship init powershell | Invoke-Expression
 zoxide init powershell | Out-String | Invoke-Expression
