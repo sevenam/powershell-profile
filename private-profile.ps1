@@ -45,7 +45,7 @@ function ff($pattern) {
     gci -r -filter "*$pattern*"
 }
 
-function cat {
+function bat {
     bat -p @args
 }
 
