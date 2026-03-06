@@ -29,6 +29,7 @@ Set-Alias sui Set-UiScaling
 Set-Alias z zoxide
 Set-Alias gittree Git-Tree
 Set-Alias gitlog Git-Tree
+Set-Alias cpt copilot
 
 # Remove default aliases to avoid conflicts
 Remove-Item Alias:cat -ErrorAction SilentlyContinue

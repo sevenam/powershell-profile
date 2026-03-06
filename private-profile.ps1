@@ -31,6 +31,7 @@ Set-Alias edit editprofile
 Set-Alias lg lazygit
 Set-Alias gittree Git-Tree
 Set-Alias gitlog Git-Tree
+Set-Alias cpt copilot
 
 # ensure user and machine path are combined correctly
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","User") + ";" + [System.Environment]::GetEnvironmentVariable("Path","Machine")
