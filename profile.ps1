@@ -42,6 +42,30 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","User") + ";" + 
 starship init powershell | Invoke-Expression
 zoxide init powershell | Out-String | Invoke-Expression
 
+function awake {
+    $settingsPath = "$env:LOCALAPPDATA\Microsoft\PowerToys\Awake\settings.json"
+
+    if (-not (Test-Path $settingsPath)) {
+        Write-Host "Awake settings file not found at: $settingsPath" -ForegroundColor Red
+        return
+    }
+
+    $settings = Get-Content $settingsPath -Raw | ConvertFrom-Json
+
+    if ($settings.properties.keepDisplayOn -and $settings.properties.mode -ne 0) {
+        # Currently awake — turn it off
+        $settings.properties.mode = 0
+        Write-Host "Awake is ON. Turning OFF..." -ForegroundColor Yellow
+    } else {
+        # Currently off — turn on indefinite + screen on
+        $settings.properties.mode = 2
+        $settings.properties.keepDisplayOn = $true
+        Write-Host "Awake is OFF. Turning ON..." -ForegroundColor Green
+    }
+
+    $settings | ConvertTo-Json -Depth 10 | Set-Content $settingsPath -Encoding UTF8
+}
+
 function ff($pattern) {
     # Get-ChildItem -Recurse -Filter "*$pattern*"
     gci -r -filter "*$pattern*"
