@@ -1,7 +1,7 @@
 Set-Alias touch ni
 Set-Alias grep sls
-Set-Alias § Invoke-History
 Set-Alias hist Get-History
+Set-Alias histall Get-FullHistory
 Set-Alias newguid New-Guid
 Set-Alias killps KillProcess
 Set-Alias kill KillProcess
@@ -41,6 +41,24 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","User") + ";" + 
 # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\atomic.omp.json" | Invoke-Expression
 starship init powershell | Invoke-Expression
 zoxide init powershell | Out-String | Invoke-Expression
+
+function pydebug {
+    param([string]$File = "")
+    if ($File) {
+        Write-Host "debugpy listening on port 5678, waiting for client to attach..."
+        python -Xfrozen_modules=off -m debugpy --listen 5678 --wait-for-client $File
+    } else {
+        $pythonCmd = @"
+print("Initializing debugpy...")
+import debugpy
+debugpy.listen(('0.0.0.0', 5678))
+print('debugpy listening on port 5678, waiting for client to attach...')
+debugpy.wait_for_client()
+print("Client connected! Debugging can start.")
+"@
+        python -i -c "$pythonCmd"
+    }
+}
 
 function awake {
     $settingsPath = "$env:LOCALAPPDATA\Microsoft\PowerToys\Awake\settings.json"
@@ -89,6 +107,32 @@ function editprofile {
 
 function §§ {
     Invoke-History (Get-History -Count 1)
+}
+
+function Get-FullHistory {
+    Get-Content (Get-PSReadlineOption).HistorySavePath
+}
+
+function § {
+    param([string]$Pattern)
+    if ($Pattern -match '^\d+$') {
+        Invoke-History $Pattern
+    } else {
+        $histPath = (Get-PSReadlineOption).HistorySavePath
+        if (-not $histPath -or -not (Test-Path $histPath)) {
+            Write-Host "History file not found: $histPath" -ForegroundColor Red
+            return
+        }
+        $command = Get-Content $histPath |
+            Where-Object { $_ -like "$Pattern*" -and $_ -notlike "§*" } |
+            Select-Object -Last 1
+        if ($command) {
+            Write-Host "Running: $command" -ForegroundColor DarkCyan
+            Invoke-Expression $command
+        } else {
+            Write-Host "Cannot locate history for: $Pattern" -ForegroundColor Red
+        }
+    }
 }
 
 function fzfgrep {
