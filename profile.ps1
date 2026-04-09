@@ -31,7 +31,8 @@ Set-Alias gittree Git-Tree
 Set-Alias gitlog Git-Tree
 Set-Alias cpt copilot
 
-Set-PSReadLineOption -PredictionView ListView
+# Use dropdown for command history:
+# Set-PSReadLineOption -PredictionView ListView
 
 # Remove default aliases to avoid conflicts
 Remove-Item Alias:cat -ErrorAction SilentlyContinue
