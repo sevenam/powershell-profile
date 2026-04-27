@@ -258,6 +258,10 @@ function petrel2024 {
     Start-Process -FilePath "C:\BuildAgentSoftware\Petrel 2024.1 x64\Petrel.exe"
 }
 
+function petrel2026 {
+    Start-Process -FilePath "C:\BuildAgentSoftware\Petrel 2026.1 x64\Petrel.exe"
+}
+
 function Set-UiScaling {
     param($percentage)
     $scaling = switch ($percentage) {
