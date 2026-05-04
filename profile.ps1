@@ -35,7 +35,6 @@ Set-Alias cpt copilot
 # Set-PSReadLineOption -PredictionView ListView
 
 # Remove default aliases to avoid conflicts
-Remove-Item Alias:cat -ErrorAction SilentlyContinue
 Remove-Item Alias:cd -ErrorAction SilentlyContinue
 
 # ensure user and machine path are combined correctly
