@@ -261,6 +261,47 @@ function petrel2026 {
     Start-Process -FilePath "C:\BuildAgentSoftware\Petrel 2026.1 x64\Petrel.exe"
 }
 
+function DecodeJwt {
+    param(
+         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
+        [string]$Token
+    )
+     process {
+    $Token = $Token.Trim()
+    if (-not $Token) { return }
+
+     $parts = $Token.Split('.')
+     if ($parts.Count -lt 2) {
+         Write-Error "Not a valid JWT token"
+         return
+     }
+
+     function ConvertFrom-Base64Url([string]$b64) {
+         $padded = $b64.Replace('-', '+').Replace('_', '/')
+         switch ($padded.Length % 4) {
+             2 { $padded += '==' }
+             3 { $padded += '=' }
+         }
+         [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($padded))
+     }
+     $header  = ConvertFrom-Base64Url $parts[0] | ConvertFrom-Json
+     $payload = ConvertFrom-Base64Url $parts[1] | ConvertFrom-Json
+
+    # Convert Unix timestamps to readable dates
+    foreach ($prop in @('exp', 'iat', 'nbf')) {
+        if ($payload.$prop) {
+            $payload | Add-Member -NotePropertyName "${prop}_utc" `
+            -NotePropertyValue ([DateTimeOffset]::FromUnixTimeSeconds($payload.$prop).UtcDateTime.ToString('o')) `
+            -Force
+        }
+    }
+    Write-Host "`n=== Header ===" -ForegroundColor Cyan
+    $header | ConvertTo-Json -Depth 10
+    Write-Host "`n=== Payload ===" -ForegroundColor Cyan
+    $payload | ConvertTo-Json -Depth 10
+    } # end process
+}
+
 function Set-UiScaling {
     param($percentage)
     $scaling = switch ($percentage) {
