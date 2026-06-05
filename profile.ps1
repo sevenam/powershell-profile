@@ -261,6 +261,10 @@ function petrel2026 {
     Start-Process -FilePath "C:\BuildAgentSoftware\Petrel 2026.1 x64\Petrel.exe"
 }
 
+function authdb {
+    sqlite3 "C:\Users\$env:USERNAME\.cegal-keystone\auth.db" "SELECT * FROM client_tokens;"
+}
+
 function DecodeJwt {
     param(
          [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
